@@ -25,7 +25,7 @@ class EditProfileAdminForm(Form):
     username = StringField('Username',validators=[DataRequired(),Length(1,64),
                                                   Regexp('^[A-Za-z][A-Za-z0-9.]*$',0,'Username'
                                                     "must have only letters,numbers,dots or underscores")])
-    confirmed = BooleanField('COnfirmed')
+    confirmed = BooleanField('Confirmed')
     role = SelectField('Role',coerce=int)
     name = StringField('Real name',validators=[Length(0,64)])
     location = StringField('Location',validators=[Length(0,64)])
@@ -44,4 +44,8 @@ class EditProfileAdminForm(Form):
             raise ValidationError('Username already in use')
 class PostForm(Form):
     body = TextAreaField("What's on your mind?",validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class CommentForm(Form):
+    body = StringField('',validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{%import "bootstrap/wtf.html" as wtf%}
+{%import "_macros.html" as macros%}
+
+{%block title%}Admin Users {%endblock%}
+
+{%block page_content%}
+<div class="page-header">
+    <h1>Admin your users ,{{current_user.username}}</h1>
+</div>
+
+<div class="User-info">
+    {%for user in users%}
+        <p>{{user.username}} -- {{user.email}}</p>
+        <a href="{{url_for('.edit_profile_admin',id=user.id)}}">Edit</a>
+    {%endfor%}
+</div>
+
+{%if pagination%}
+<div class="pagination">
+    {{macros.pagination_widget(pagination,'.admin')}}
+</div>
+{%endif%}
+{%endblock%}
+
+{%block scripts%}
+{{super()}}
+{{pagedown.include_pagedown()}}
+{%endblock%}
